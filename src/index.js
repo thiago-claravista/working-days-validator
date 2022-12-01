@@ -4,7 +4,7 @@ const cors = require("cors");
 const authentication = require("./middlewares/authentication");
 const populateDatabase = require("./utils/populateDatabase");
 const app = express();
-const port = 3000;
+const port = 3002;
 
 const init = async () => {
   // conexão com o MongoDB
