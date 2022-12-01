@@ -19,11 +19,22 @@ API de validação de dias úteis incluindo a manipulação de datas comemorativ
 
 ## **Instalação**
 
-Para executar a aplicação, é necessário...
+Para executar a aplicação, é necessário ter o [Node.js](https://nodejs.org/en/download/) instalado no ambiente de execução. <br><br>
+Instale as dependência do projeto com o comando `npm install`:
+
+```console
+$ npm install
+```
+
+Executa a aplicação com o comando `npm start`:
+
+```console
+$ npm start
+```
 
 ## **Autenticação**
 
-Para realizar as requisições nos endpoints da API, é necessário se autenticar passando no cabeçalho da requisição um token fixo precedido da palavra 'Bearer'. O token é alcançado através da conversão da palavra passe 'Claravista@2022' para a codificação `base64`.<br>
+Para realizar as requisições nos endpoints da API, é necessário se autenticar passando no cabeçalho da requisição um token fixo precedido da palavra 'Bearer'. O token é alcançado através da codificação da palavra passe 'Claravista@2022' utilizando `base64`.<br>
 Podemos utilizar o método `btoa()`, nativo do JavaScript, para codificar `string` para `base64`:
 
 ```javascript
@@ -63,7 +74,7 @@ Exemplos de algumas datas válidas e inválidas:
 ## **Feriados**
 
 Para a manipulação de feriados, foram desenvolvidas rotas de `GET`, `POST`, `PUT` e `DELETE`, onde as datas podem ser consultados, inseridas, alteradas e deletadas.
-<br><br>
+<br>
 
 ### Consultando datas
 
@@ -96,13 +107,14 @@ Sendo assim, obteremos uma resposta semelhante ao objeto abaixo:
 ]
 ```
 
-Perceba que mesmo especificando o ano de 2022 na busca, as datas que foram registradas sem esse dado foram retornadas, pois ela são consideradas em todos os anos.
+Percebe-se que mesmo especificando o ano de 2022 na busca, as datas que foram registradas sem esse dado foram retornadas, pois elas são consideradas em todos os anos.
 
 ### Inserindo datas
 
-![POST](https://img.shields.io/badge/-POST-brightgreen) <br>
-Para inserir uma data na aplicação, é necessário realizar uma chamada `POST` para o endpoint **_`/holidays`_** passando um `JSON` no corpo da requisição com os atributos **`date`** e **`description`**.<br><br>
-Caso queira inserir uma data que será considerada para todos os anos subsequentes, você deve omitir o ano no valor informado no campo `date` e obedecer o formado `dd-mm` ou `dd/mm`.
+![POST](https://img.shields.io/badge/-POST-brightgreen)
+
+Para inserir uma data na aplicação, é necessário realizar uma chamada `POST` para o endpoint **_`/holidays`_** passando um `JSON` no corpo da requisição com os atributos **`date`** e **`description`**. <br><br>
+Caso queira inserir uma data que será considerada para todos os anos, você deve omitir o ano no valor informado no campo `date` e obedecer o formado `dd-mm` ou `dd/mm`.
 
 ```json
 {
@@ -120,7 +132,7 @@ No caso de uma data que será considerada apenas em um ano específico, ela deve
 }
 ```
 
-Em caso de sucesso, será obtido uma resposta com _status code `201`_ e um `JSON` do objeto criado.
+Em caso de sucesso, será obtido uma resposta com _status code `201`_ e um objeto JSON do registro criado.
 
 ```json
 {
@@ -137,14 +149,19 @@ Em caso de sucesso, será obtido uma resposta com _status code `201`_ e um `JSON
 
 ### Deletando datas
 
-![DELETE](https://img.shields.io/badge/-DELETE-red) <br>
+![DELETE](https://img.shields.io/badge/-DELETE-red)
+
 Para deletar uma data na aplicação, é necessário realizar uma requisição `DELETE` para o endpoint **_`/holidays/:id`_** passando o `id` da data cadastrada, que é obtido [consultando datas](#consultando-datas), como descrito acima. <br>
-Em caso de sucesso, será obtido uma resposta com _status code `200`_ e um `JSON` do objeto deletado.
+
+- `/holidays/6387c0689115340b43fc8fc8`
+
+Em caso de sucesso, será obtido uma resposta com _status code `200`_ e um objeto JSON do registro deletado.
 
 ## Alterando datas
 
-![PUT](https://img.shields.io/badge/-PUT-orange) <br>
-Para alterar uma data na aplicação, é necessário realizar uma chamada `PUT` para o endpoint **_`/holidays/:id`_** passando o `id` da data cadastrada, que é obtido [consultando datas](#consultando-datas), como descrito acima, e um `JSON` no corpo da requisição contendo unico e obrigatóriamente o campo **`description`**. <br>
+![PUT](https://img.shields.io/badge/-PUT-orange)
+
+Para alterar uma data na aplicação, é necessário realizar uma chamada `PUT` para o endpoint **_`/holidays/:id`_** passando o `id` da data cadastrada, que é obtido [consultando datas](#consultando-datas), como descrito acima, e um JSON no corpo da requisição contendo unico e obrigatóriamente o campo **`description`**. <br>
 
 - `/holidays/638902c1bd015b3c5420b3fb`
 
@@ -155,7 +172,7 @@ Para alterar uma data na aplicação, é necessário realizar uma chamada `PUT` 
 ```
 
 Esse tipo de operação, só permite alterações na descrição da data. <br>
-Em caso de sucesso, será obtido uma resposta com _status code `200`_ e um `JSON` do objeto alterado.
+Em caso de sucesso, será obtido uma resposta com _status code `200`_ e um JSON do objeto alterado.
 
 ```json
 {
@@ -176,7 +193,8 @@ A rota de validação permite consultar se uma determinada data é um dia útil 
 
 ### Validando Datas
 
-![GET](https://img.shields.io/badge/-GET-blue) <br>
+![GET](https://img.shields.io/badge/-GET-blue)
+
 Por padrão, a API valida apenas dias úteis, invalidando datas que caem em finais de semana. Para incrementar feriados na validação, é necessário informar o parâmetro **`holidays=true`**. <br>
 Para obter a validação de uma data, é necessário informá-la como _query param_ na URL através do atributo **`date`**, obedecendo os [formatos válidos](#formatos-de-data). Exemplo, verificando se a data 15/04/2022 é um dia útil. <br>
 
@@ -191,7 +209,7 @@ Nesse cenário, obteremos o seguinte retorno:
 }
 ```
 
-Lembrando a data acima foi cadastrada apenas para o ano de 2022, logo, se buscarmos o mesmo dia e mês para o ano anterior (2021) o resultado esperado será diferente.
+A data acima foi cadastrada anteriormente apenas para o ano de 2022, logo, se buscarmos o mesmo dia e mês para o ano anterior (2021) o resultado esperado será diferente.
 
 - `/validate?date=15-11-2021&holidays=true`
 
