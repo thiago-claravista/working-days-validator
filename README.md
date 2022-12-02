@@ -20,13 +20,13 @@ API de validação de dias úteis incluindo a manipulação de datas comemorativ
 ## **Instalação**
 
 Para executar a aplicação, é necessário ter o [Node.js](https://nodejs.org/en/download/) instalado no ambiente de execução. <br><br>
-Instale as dependência do projeto com o comando `npm install`:
+No diretório do projeto, em linha de comando, instale as dependência do projeto com `npm install`:
 
 ```console
 $ npm install
 ```
 
-Executa a aplicação com o comando `npm start`:
+Execute a aplicação com o comando `npm start`:
 
 ```console
 $ npm start
