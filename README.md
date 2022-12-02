@@ -35,7 +35,7 @@ $ npm start
 ## **Autenticação**
 
 Para realizar as requisições nos endpoints da API, é necessário se autenticar passando no cabeçalho da requisição um token fixo precedido da palavra 'Bearer'. O token é alcançado através da codificação da palavra passe 'Claravista@2022' utilizando `base64`.<br>
-É recomendável utilizar o método `btoa()`, nativo do JavaScript, para codificar `utf-16` para `base64`:
+É recomendável utilizar o método `btoa()`, nativo do JavaScript, que codifica `utf-16` para `base64`:
 
 ```javascript
 btoa("exemplo");
