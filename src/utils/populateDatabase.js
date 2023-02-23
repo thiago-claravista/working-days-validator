@@ -6,10 +6,8 @@ const populateDatabase = () => {
   holidays.forEach(({ date, description }) => {
     const [, day, month, , year = null] = date.match(regexDate);
     const currentYear = new Date().getFullYear();
-    const _date = new Date(year || currentYear, month - 1, day);
-    const localeDate = _date
-      .toLocaleDateString("pt-br")
-      .slice(0, year ? undefined : 5);
+    const _date = `${day}/${month}/${year || currentYear}`;
+    const localeDate = _date.slice(0, year ? undefined : 5);
 
     model
       .create({
