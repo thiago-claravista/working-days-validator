@@ -46,7 +46,7 @@ No cabeçalho da requisição teríamos algo parecido com:
 
 ```javascript
 {
-  Authorization: `Bearer ${btoa("Claravista@2020")}`;
+  Authorization: `Bearer ${btoa("Claravista@2022")}`;
 }
 ```
 
